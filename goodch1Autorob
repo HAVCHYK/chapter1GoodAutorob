@@ -365,6 +365,7 @@ while true do
         end
         local function bank()
             if game:GetService("ReplicatedStorage").HeistStatus.Bank.Robbing.Value == true then
+                colissionDb = false
                 tweenTpDb = true
                 for _, part in ipairs(collisionParts) do
                     local real
