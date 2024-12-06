@@ -158,18 +158,20 @@ while true do
         game.Players.LocalPlayer.PlayerGui.MainGUI.TeleportEffect:Destroy()
     end
     local function tp(x, y, z) -- not 100% teleport but best method
-        Game.Workspace.Pyramid.Tele.Core2.CanCollide = false
-        Game.Workspace.Pyramid.Tele.Core2.Transparency = 1
-        Game.Workspace.Pyramid.Tele.Core2.CFrame = Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        task.wait()
-        Game.Workspace.Pyramid.Tele.Core2.CFrame = CFrame.new(1231.14185, 51051.2344, 318.096191)
-        Game.Workspace.Pyramid.Tele.Core2.Transparency = 0
-        Game.Workspace.Pyramid.Tele.Core2.CanCollide = true
-        task.wait()
-        for i = 1, 45 do
-            Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
+        pcall(function()
+            Game.Workspace.Pyramid.Tele.Core2.CanCollide = false
+            Game.Workspace.Pyramid.Tele.Core2.Transparency = 1
+            Game.Workspace.Pyramid.Tele.Core2.CFrame = Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             task.wait()
-        end
+            Game.Workspace.Pyramid.Tele.Core2.CFrame = CFrame.new(1231.14185, 51051.2344, 318.096191)
+            Game.Workspace.Pyramid.Tele.Core2.Transparency = 0
+            Game.Workspace.Pyramid.Tele.Core2.CanCollide = true
+            task.wait()
+            for i = 1, 45 do
+                Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
+                task.wait()
+            end
+        end)
     end
 
     local tweenTpDb = false
