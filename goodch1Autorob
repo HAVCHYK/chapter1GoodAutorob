@@ -344,6 +344,7 @@ while true do
                         part.CanCollide = false
                     end)
                 end
+                task.wait()
                 tp(0, 0, 0)
                 tp(1365, 45, -152) -- Открыть клуб
                 task.wait(0.1)
@@ -381,6 +382,7 @@ while true do
                         part.CanCollide = false
                     end)
                 end
+                task.wait()
                 tp(0, 0, 0)
                 task.wait(0.1)
                 tweenTp(673, 82, 561)
