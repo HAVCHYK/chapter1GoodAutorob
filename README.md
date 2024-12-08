@@ -6,7 +6,8 @@ getgenv().robCasino = true
 getgenv().robClub = true
 getgenv().robBank = true
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob"))() -- open source```
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob"))() -- open source
+```
 
 USE XENO OR JJSPLOIT AND PUT THE SCRIPT IN AUTOEXEC (don't work on solara)
 how to do this? find "autoexec" folder in general folder of your eхploit, create txt file and paste the script
