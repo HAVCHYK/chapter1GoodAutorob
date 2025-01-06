@@ -14,7 +14,7 @@ while true do
     end
     if _G.aedb == true then
         queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob'))()")
-    else
+    end
 
     local serverHops = {
         ["MostEmptyServer"] = function()
@@ -157,7 +157,7 @@ while true do
     end)
     
     task.spawn(function()
-        for real = 1, 25 do
+        for real = 1, 100 do
             task.wait(0.2)
             print("by qhav on discord for free using")
         end
