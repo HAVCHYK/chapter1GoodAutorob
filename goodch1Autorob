@@ -6,7 +6,6 @@ while true do
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
     wait(2)
     
-    if _G.aedb == true then return nil end
     local autoexec = getgenv().autoexec
     
     if autoexec == true then
