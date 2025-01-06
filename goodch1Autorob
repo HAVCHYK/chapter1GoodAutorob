@@ -6,7 +6,27 @@ while true do
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
     wait(2)
     
+    if _G.aedb == true then return nil end
     local autoexec = getgenv().autoexec
+    
+    if getgenv().serverHopType ~= nil then
+        _G.serverhop = getgenv().serverHopType
+    elseif getgenv().HeistsRobbing ~= nil then
+        _G.robHeists = getgenv().HeistsRobbing
+    elseif getgenv().robCasino ~= nil then
+        _G.rCasino = getgenv().robCasino
+    elseif getgenv().robClub ~= nil then
+        _G.rClub = getgenv().robClub
+    elseif getgenv().robBank ~= nil then
+        _G.rBank = getgenv().robBank
+    end
+    
+    local serverhop = _G.serverhop
+    local robHeists = _G.robHeists
+    
+    local rCasino = _G.rCasino
+    local rClub = _G.rClub
+    local rBank = _G.rBank
     
     if autoexec == true then
         _G.aedb = true
@@ -14,7 +34,7 @@ while true do
     if _G.aedb == true then
         queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob'))()")
     end
-
+    
     local serverHops = {
         ["MostEmptyServer"] = function()
             local PlaceID = game.PlaceId
@@ -98,7 +118,7 @@ while true do
                 end
             end
             
-            Teleport()
+    Teleport()
         end,
         ["RandomServer"] = function()
             local a, b = pcall(function()
@@ -109,7 +129,7 @@ while true do
                 })
                 local body = game:GetService("HttpService"):JSONDecode(req.Body)
                 
-                if body and body.data then
+    if body and body.data then
                     for i, v in next, body.data do
                         if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
                             table.insert(servers, 1, v.id)
@@ -134,13 +154,13 @@ while true do
                 end
             end)
             
-            print(a, b)
+    print(a, b)
             
             if not a then
                 shop()
             end
             
-            task.spawn(function()
+    task.spawn(function()
                 while wait(5) do
                     shop()
                 end
@@ -150,7 +170,6 @@ while true do
     
     wait(1)
     
-    local serverhop = getgenv().serverHopType
     game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Died:Connect(function()
         serverHops[serverhop]()
     end)
@@ -308,7 +327,6 @@ while true do
     tp(2115, 26, 420)
     task.wait(4)
 
-    local robHeists = getgenv().HeistsRobbing
     if robHeists == true then
         local colissionDb = false
         local function casino()
@@ -394,12 +412,6 @@ while true do
                 tp(2115, 26, 420)
             end
         end
-        local rCasino = getgenv().robCasino
-        print(rCasino)
-        local rClub = getgenv().robClub
-        print(rClub)
-        local rBank = getgenv().robBank
-        print(rBank)
         if rCasino == true then
             casino()
         end
