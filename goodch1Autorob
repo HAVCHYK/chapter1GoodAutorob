@@ -5,15 +5,16 @@ while true do
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
     wait(2)
-
+    
+    if _G.aedb == true then return nil end
     local autoexec = getgenv().autoexec
+    
     if autoexec == true then
-        if _G.aedb == true then
-            queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob'))()")
-        else
-            _G.aedb = true
-        end
+        _G.aedb = true
     end
+    if _G.aedb == true then
+        queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob'))()")
+    else
 
     local serverHops = {
         ["MostEmptyServer"] = function()
