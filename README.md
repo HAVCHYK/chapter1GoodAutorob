@@ -1,6 +1,6 @@
 ```lua
 getgenv().serverHopType = "RandomServer" -- "MostEmptyServer" or "RandomServer" (DO NOT REMOVE "")
-getgenv().autoexec = true -- if your exploit have no autoexec folder then change false to true 
+getgenv().autoexec = false -- if your exploit have no autoexec folder then change false to true 
 
 getgenv().HeistsRobbing = true -- change true to false if you dont want to rob anything, only mini robberies autofarm
 
