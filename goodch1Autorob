@@ -4,37 +4,10 @@ while true do
     repeat wait() until game.Players.LocalPlayer.Character
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
     wait(2)
-    
-    if _G.aedb == true then return nil end
-    local autoexec = getgenv().autoexec
-    
-    if getgenv().serverHopType ~= nil then
-        _G.serverhop = getgenv().serverHopType
-    elseif getgenv().HeistsRobbing ~= nil then
-        _G.robHeists = getgenv().HeistsRobbing
-    elseif getgenv().robCasino ~= nil then
-        _G.rCasino = getgenv().robCasino
-    elseif getgenv().robClub ~= nil then
-        _G.rClub = getgenv().robClub
-    elseif getgenv().robBank ~= nil then
-        _G.rBank = getgenv().robBank
-    end
-    
-    local serverhop = _G.serverhop
-    local robHeists = _G.robHeists
-    
-    local rCasino = _G.rCasino
-    local rClub = _G.rClub
-    local rBank = _G.rBank
-    
-    if autoexec == true then
-        _G.aedb = true
-    end
-    if _G.aedb == true then
-        queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob'))()")
-    end
-    
+    local serverhop = getgenv().serverHopType
+
     local serverHops = {
         ["MostEmptyServer"] = function()
             local PlaceID = game.PlaceId
@@ -42,7 +15,7 @@ while true do
             local foundAnything = ""
             local actualHour = os.date("!*t").hour
             local Deleted = false
-            
+
             local File = pcall(function()
                 AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
             end)
@@ -54,10 +27,10 @@ while true do
                 local Site;
                 if foundAnything == "" then
                     Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' ..
-                    PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+                        PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
                 else
                     Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' ..
-                    PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+                        PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
                 end
                 local ID = ""
                 if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
@@ -99,7 +72,7 @@ while true do
                                 wait()
                                 print("Teleporting...") -- to be sure
                                 game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID,
-                                game.Players.LocalPlayer)
+                                    game.Players.LocalPlayer)
                             end)
                             wait(4)
                         end
@@ -117,31 +90,31 @@ while true do
                     end)
                 end
             end
-            
-    Teleport()
+
+            Teleport()
         end,
         ["RandomServer"] = function()
             local a, b = pcall(function()
                 local servers = {}
                 local req = request({
                     Url = "https://games.roblox.com/v1/games/" ..
-                    game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true"
+                        game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true"
                 })
                 local body = game:GetService("HttpService"):JSONDecode(req.Body)
-                
-    if body and body.data then
+
+                if body and body.data then
                     for i, v in next, body.data do
                         if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
                             table.insert(servers, 1, v.id)
                         end
                     end
                 end
-                
+
                 print(#servers)
                 if #servers > 0 then
                     game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,
-                    servers[math.random(1, #servers)],
-                    game.Players.LocalPlayer)
+                        servers[math.random(1, #servers)],
+                        game.Players.LocalPlayer)
                 else
                     if #game.Players:GetChildren() <= 1 then
                         Players.LocalPlayer:Kick("\nRejoining...")
@@ -149,33 +122,33 @@ while true do
                         game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
                     else
                         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId,
-                        game.Players.LocalPlayer)
+                            game.Players.LocalPlayer)
                     end
                 end
             end)
-            
-    print(a, b)
-            
+
+            print(a, b)
+
             if not a then
                 shop()
             end
-            
-    task.spawn(function()
+
+            task.spawn(function()
                 while wait(5) do
                     shop()
                 end
             end)
         end
     }
-    
+
     wait(1)
-    
+
     game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Died:Connect(function()
         serverHops[serverhop]()
     end)
-    
+
     task.spawn(function()
-        for real = 1, 100 do
+        for real = 1, 25 do
             task.wait(0.2)
             print("by qhav on discord for free using")
         end
@@ -327,6 +300,7 @@ while true do
     tp(2115, 26, 420)
     task.wait(4)
 
+    local robHeists = getgenv().HeistsRobbing
     if robHeists == true then
         local colissionDb = false
         local function casino()
@@ -412,6 +386,12 @@ while true do
                 tp(2115, 26, 420)
             end
         end
+        local rCasino = getgenv().robCasino
+        print(rCasino)
+        local rClub = getgenv().robClub
+        print(rClub)
+        local rBank = getgenv().robBank
+        print(rBank)
         if rCasino == true then
             casino()
         end
