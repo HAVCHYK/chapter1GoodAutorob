@@ -4,9 +4,16 @@ while true do
     repeat wait() until game.Players.LocalPlayer.Character
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
     repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-
     wait(2)
-    local serverhop = getgenv().serverHopType
+
+    local autoexec = getgenv().autoexec
+    if autoexec == true then
+        if _G.aedb == true then
+            queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/HAVCHYK/chapter1GoodAutorob/refs/heads/main/goodch1Autorob'))()")
+        else
+            _G.aedb = true
+        end
+    end
 
     local serverHops = {
         ["MostEmptyServer"] = function()
@@ -15,7 +22,7 @@ while true do
             local foundAnything = ""
             local actualHour = os.date("!*t").hour
             local Deleted = false
-
+            
             local File = pcall(function()
                 AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
             end)
@@ -27,10 +34,10 @@ while true do
                 local Site;
                 if foundAnything == "" then
                     Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' ..
-                        PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+                    PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
                 else
                     Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' ..
-                        PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+                    PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
                 end
                 local ID = ""
                 if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
@@ -72,7 +79,7 @@ while true do
                                 wait()
                                 print("Teleporting...") -- to be sure
                                 game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID,
-                                    game.Players.LocalPlayer)
+                                game.Players.LocalPlayer)
                             end)
                             wait(4)
                         end
@@ -90,7 +97,7 @@ while true do
                     end)
                 end
             end
-
+            
             Teleport()
         end,
         ["RandomServer"] = function()
@@ -98,10 +105,10 @@ while true do
                 local servers = {}
                 local req = request({
                     Url = "https://games.roblox.com/v1/games/" ..
-                        game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true"
+                    game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true"
                 })
                 local body = game:GetService("HttpService"):JSONDecode(req.Body)
-
+                
                 if body and body.data then
                     for i, v in next, body.data do
                         if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= game.JobId then
@@ -109,12 +116,12 @@ while true do
                         end
                     end
                 end
-
+                
                 print(#servers)
                 if #servers > 0 then
                     game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId,
-                        servers[math.random(1, #servers)],
-                        game.Players.LocalPlayer)
+                    servers[math.random(1, #servers)],
+                    game.Players.LocalPlayer)
                 else
                     if #game.Players:GetChildren() <= 1 then
                         Players.LocalPlayer:Kick("\nRejoining...")
@@ -122,17 +129,17 @@ while true do
                         game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
                     else
                         game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId,
-                            game.Players.LocalPlayer)
+                        game.Players.LocalPlayer)
                     end
                 end
             end)
-
+            
             print(a, b)
-
+            
             if not a then
                 shop()
             end
-
+            
             task.spawn(function()
                 while wait(5) do
                     shop()
@@ -140,13 +147,14 @@ while true do
             end)
         end
     }
-
+    
     wait(1)
-
+    
+    local serverhop = getgenv().serverHopType
     game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Died:Connect(function()
         serverHops[serverhop]()
     end)
-
+    
     task.spawn(function()
         for real = 1, 25 do
             task.wait(0.2)
@@ -158,20 +166,18 @@ while true do
         game.Players.LocalPlayer.PlayerGui.MainGUI.TeleportEffect:Destroy()
     end
     local function tp(x, y, z) -- not 100% teleport but best method
-        pcall(function()
-            Game.Workspace.Pyramid.Tele.Core2.CanCollide = false
-            Game.Workspace.Pyramid.Tele.Core2.Transparency = 1
-            Game.Workspace.Pyramid.Tele.Core2.CFrame = Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        Game.Workspace.Pyramid.Tele.Core2.CanCollide = false
+        Game.Workspace.Pyramid.Tele.Core2.Transparency = 1
+        Game.Workspace.Pyramid.Tele.Core2.CFrame = Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        task.wait()
+        Game.Workspace.Pyramid.Tele.Core2.CFrame = CFrame.new(1231.14185, 51051.2344, 318.096191)
+        Game.Workspace.Pyramid.Tele.Core2.Transparency = 0
+        Game.Workspace.Pyramid.Tele.Core2.CanCollide = true
+        task.wait()
+        for i = 1, 45 do
+            Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
             task.wait()
-            Game.Workspace.Pyramid.Tele.Core2.CFrame = CFrame.new(1231.14185, 51051.2344, 318.096191)
-            Game.Workspace.Pyramid.Tele.Core2.Transparency = 0
-            Game.Workspace.Pyramid.Tele.Core2.CanCollide = true
-            task.wait()
-            for i = 1, 45 do
-                Game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
-                task.wait()
-            end
-        end)
+        end
     end
 
     local tweenTpDb = false
@@ -344,7 +350,6 @@ while true do
                         part.CanCollide = false
                     end)
                 end
-                task.wait()
                 tp(0, 0, 0)
                 tp(1365, 45, -152) -- Открыть клуб
                 task.wait(0.1)
@@ -368,7 +373,6 @@ while true do
         end
         local function bank()
             if game:GetService("ReplicatedStorage").HeistStatus.Bank.Robbing.Value == true then
-                colissionDb = false
                 tweenTpDb = true
                 for _, part in ipairs(collisionParts) do
                     local real
@@ -382,7 +386,6 @@ while true do
                         part.CanCollide = false
                     end)
                 end
-                task.wait()
                 tp(0, 0, 0)
                 task.wait(0.1)
                 tweenTp(673, 82, 561)
